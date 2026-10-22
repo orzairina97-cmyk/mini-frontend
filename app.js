@@ -72,4 +72,20 @@ postForm.addEventListener("submit", async (event) => {
   }
 });
 
+searchInput.addEventListener("input", () => {
+  const text = searchInput.value.trim().toLowerCase();
+
+  const filtered = posts.filter((post) => {
+    return post.title.toLowerCase().includes(text);
+  });
+
+  renderPosts(filtered);
+
+  if (filtered.length === 0) {
+    statusEl.textContent = "Nu s-a găsit nicio postare.";
+  } else {
+    statusEl.textContent = "";
+  }
+});
+
 loadPosts();
