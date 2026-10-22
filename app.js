@@ -7,3 +7,39 @@ const statusEl = document.querySelector("#status");
 const postsList = document.querySelector("#posts");
 
 let posts = [];
+
+function renderPosts(list) {
+  postsList.textContent = "";
+
+  list.forEach((post) => {
+    const li = document.createElement("li");
+    li.textContent = post.title;
+    postsList.append(li);
+  });
+}
+
+async function loadPosts() {
+  statusEl.textContent = "Se încarcă...";
+
+  try {
+    const response = await fetch(API_URL);
+
+    if (!response.ok) {
+      throw new Error("Eroare server: " + response.status);
+    }
+
+    posts = await response.json();
+
+    if (posts.length === 0) {
+      statusEl.textContent = "Nu există nicio postare încă.";
+    } else {
+      statusEl.textContent = "";
+    }
+
+    renderPosts(posts);
+  } catch (error) {
+    statusEl.textContent = "Nu s-au putut încărca postările. Încearcă din nou.";
+  }
+}
+
+loadPosts();
