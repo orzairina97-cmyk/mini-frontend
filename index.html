@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Postarile mele</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 </head>
+
 <body>
-    
+
+    <header>
+        <h1>Postările mele</h1>
+        <p>Citește postările existente. Adaugă o postare nouă.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Adaugă o postare</h2>
+            <form id="post-form">
+                <div>
+                <label for="title">Titlu:</label>
+                <input type="text" id="title" name="title" required minlength="3">
+                </div>
+
+                <div>
+                <label for="body">Conținut:</label>
+                <textarea id="body" name="body" rows="4" required></textarea>
+                </div>
+
+                <button type="submit">Publică</button>
+
+            </form>
+
+            <p id="form-error" role="alert"></p>
+        </section>
+
+        <section>
+            <h2>Postări</h2>
+            <div>
+            <label for="search">Caută un titlu:</label>
+            <input type="search" id="search" name="q">
+            </div>
+
+            <p id="status" role="status">Se încarcă...</p>
+            <ul id="posts"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Temă recapitulativă, 2026</p>
+    </footer>
+
 </body>
 </html>
