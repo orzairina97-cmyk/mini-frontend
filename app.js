@@ -40,6 +40,15 @@ async function loadPosts() {
   } catch (error) {
     statusEl.textContent = "Nu s-au putut încărca postările. Încearcă din nou.";
   }
+
+  postForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(postForm);
+  const data = Object.fromEntries(formData);
+
+  console.log(data);
+});
 }
 
 loadPosts();
