@@ -40,15 +40,36 @@ async function loadPosts() {
   } catch (error) {
     statusEl.textContent = "Nu s-au putut încărca postările. Încearcă din nou.";
   }
+}
 
-  postForm.addEventListener("submit", (event) => {
+postForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+  formError.textContent = "";
 
   const formData = new FormData(postForm);
   const data = Object.fromEntries(formData);
 
-  console.log(data);
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      formError.textContent = "Eroare " + response.status + ": " + errorText;
+      return;
+    }
+
+    const newPost = await response.json();
+    posts.unshift(newPost);
+    statusEl.textContent = "";
+    renderPosts(posts);
+    postForm.reset();
+  } catch (error) {
+    formError.textContent = "Nu s-a putut trimite. Verifică conexiunea la internet.";
+  }
 });
-}
 
 loadPosts();
