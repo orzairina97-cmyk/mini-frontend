@@ -13,7 +13,16 @@ function renderPosts(list) {
 
   list.forEach((post) => {
     const li = document.createElement("li");
-    li.textContent = post.title;
+
+    const title = document.createElement("span");
+    title.textContent = post.title;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Șterge";
+    button.dataset.id = post.id;
+
+    li.append(title, button);
     postsList.append(li);
   });
 }
@@ -85,6 +94,31 @@ searchInput.addEventListener("input", () => {
     statusEl.textContent = "Nu s-a găsit nicio postare.";
   } else {
     statusEl.textContent = "";
+  }
+});
+
+postsList.addEventListener("click", async (event) => {
+  const button = event.target.closest("button");
+
+  if (!button) {
+    return;
+  }
+
+  const id = Number(button.dataset.id);
+
+  try {
+    const response = await fetch(API_URL + "/" + id, { method: "DELETE" });
+
+    if (!response.ok) {
+      statusEl.textContent = "Nu s-a putut șterge postarea (eroare " + response.status + ").";
+      return;
+    }
+
+    posts = posts.filter((post) => post.id !== id);
+    renderPosts(posts);
+    statusEl.textContent = "";
+  } catch (error) {
+    statusEl.textContent = "Nu s-a putut șterge. Verifică conexiunea la internet.";
   }
 });
 
