@@ -72,3 +72,16 @@ button {
   min-width: 0;
   overflow-wrap: anywhere;
 }
+
+@media (max-width: 480px) {
+  header,
+  main,
+  footer {
+    padding: 8px;
+  }
+
+  #posts li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
