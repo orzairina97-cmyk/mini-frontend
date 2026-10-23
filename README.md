@@ -6,7 +6,7 @@ API folosit: https://jsonplaceholder.typicode.com/posts
 
 Link public: https://orzairina97-cmyk.github.io/mini-frontend/
 
-CORS: header pe server. JSONPlaceholder (jsonplaceholder.typicode.com) este un serviciu public de test. Acest server permite automat cererile venite de pe alte site-uri așa că nu a fost necesar să modific codul. Am verificat acest lucru în panoul DevTools, fereastra Network, unde în dreapta liniei Access-Control-Allow-Origin apare adresa site-ului meu. Serverul API-ului (JSONPlaceholder) trimite deci singur headerul.
+CORS: header pe server. JSONPlaceholder (jsonplaceholder.typicode.com) este un serviciu public de test. Acest server permite automat cererile venite de pe alte site-uri, așa că nu a fost necesar să modific codul. Am verificat acest lucru în panoul DevTools, fereastra Network, unde în dreapta liniei Access-Control-Allow-Origin apare adresa site-ului meu. Serverul API-ului (JSONPlaceholder) trimite deci singur headerul.
 
 Status codes:
 Verific response.ok, adică dacă serverul a răspuns cu un cod de succes (2xx).
