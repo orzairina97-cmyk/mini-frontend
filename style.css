@@ -85,3 +85,12 @@ button {
     align-items: flex-start;
   }
 }
+
+#posts li {
+  flex-wrap: wrap;
+}
+
+#posts p {
+  flex-basis: 100%;
+  margin: 0;
+}

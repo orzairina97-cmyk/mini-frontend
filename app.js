@@ -17,12 +17,15 @@ function renderPosts(list) {
     const title = document.createElement("span");
     title.textContent = post.title;
 
+    const body = document.createElement("p");
+    body.textContent = post.body;   
+
     const button = document.createElement("button");
     button.type = "button";
     button.textContent = "Șterge";
     button.dataset.id = post.id;
 
-    li.append(title, button);
+    li.append(title, body, button);
     postsList.append(li);
   });
 }
